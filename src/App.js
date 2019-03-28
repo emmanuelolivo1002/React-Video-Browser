@@ -20,12 +20,21 @@ class App extends Component {
       }
     });
 
-    this.setState({ videos: res.data.items });
+    // Set the video list as well as the selecte video to be the first video
+    this.setState({
+      videos: res.data.items,
+      selectedVideo: res.data.items[0]
+    });
   };
 
   // Show the video details when a video from the list is clicked
   onVideoSelect = video => {
     this.setState({ selectedVideo: video });
+  };
+
+  // Set the default to be cats when it first loads app
+  componentDidMount = () => {
+    this.onTermSubmit("cats");
   };
 
   render() {
