@@ -1,9 +1,10 @@
 import React from "react";
+import Spinner from "./Spinner";
 
 const VideoDetail = ({ video }) => {
   // If there is no video return loading div
   if (!video) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
   return (
     <div>
