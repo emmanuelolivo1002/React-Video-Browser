@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 
+// Components
+import SearchBar from "./components/SearchBar";
+
 class App extends Component {
+  onTermSubmit = term => {};
+
   render() {
     return (
-      <div className="App">
-        <h1>Video Player</h1>
+      <div className="ui container">
+        <SearchBar onFormSubmit={this.onTermSubmit} />
       </div>
     );
   }
