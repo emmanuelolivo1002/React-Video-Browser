@@ -1,4 +1,8 @@
 import React from "react";
+
+import "./VideoList.scss";
+
+// Components
 import VideoItem from "./VideoItem";
 
 const VideoList = ({ videos, onVideoSelect }) => {
@@ -12,7 +16,9 @@ const VideoList = ({ videos, onVideoSelect }) => {
     );
   });
 
-  return <div className="ui relaxed divided list">{renderedList}</div>;
+  return (
+    <div className="ui relaxed divided list video-list">{renderedList}</div>
+  );
 };
 
 export default VideoList;
