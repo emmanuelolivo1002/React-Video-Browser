@@ -4,10 +4,12 @@ import youtube from "./apis/youtube";
 // Components
 import SearchBar from "./components/SearchBar";
 import VideoList from "./components/VideoList";
+import VideoDetail from "./components/VideoDetail";
 
 class App extends Component {
   state = {
-    videos: []
+    videos: [],
+    selectedVideo: ""
   };
 
   // Get videos from youtube API and set the state when user submits search bar
@@ -18,21 +20,29 @@ class App extends Component {
       }
     });
 
-    console.log(res.data.items);
     this.setState({ videos: res.data.items });
   };
 
   // Show the video details when a video from the list is clicked
   onVideoSelect = video => {
-    console.log("From App.js:", video);
+    this.setState({ selectedVideo: video });
   };
 
   render() {
-    const { videos } = this.state;
+    const { videos, selectedVideo } = this.state;
     return (
       <div className="ui container">
         <SearchBar onFormSubmit={this.onTermSubmit} />
-        <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
+        <div className="ui grid">
+          <div className="ui row">
+            <div className="eleven wide column">
+              <VideoDetail video={selectedVideo} />
+            </div>
+            <div className="five wide column">
+              <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
